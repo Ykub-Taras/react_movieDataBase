@@ -1,5 +1,14 @@
 .App {
   text-align: center;
+  margin: 30px 50px;
+  padding: 20px;
+display: block;
+  border: #79919a 10px ridge;
+   background-image: url(../src/logoTMDB.svg);
+  /*background-position: center;*/
+  /*background-repeat: no-repeat;*/
+  mix-blend-mode: difference;
+  /*text-shadow: 1px 1px 1px #bff4f4;*/
 }
 
 .App-logo {
@@ -36,3 +45,6 @@
     transform: rotate(360deg);
   }
 }
+
+.reactStar {display: flex;
+  justify-content: space-around}
