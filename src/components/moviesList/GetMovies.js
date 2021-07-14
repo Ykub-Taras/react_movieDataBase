@@ -1,17 +1,18 @@
 import React, {Fragment, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getDiscover, getPopular} from "../../services/api";
-import {setGenre, setListMovies, setMovieId} from "../../redux/actionCreators";
+import {setListMovies} from "../../redux/actionCreators";
 import {Link} from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import {Badge} from 'reactstrap';
+import {getDiscover, getPopular} from "../../services/api";
 
 
-const GetMovies = () => {
+const GetMovies = ({id}) => {
+    console.log('======================',id)
     const dispatch = useDispatch();
     let ganreStatus = useSelector(({genres}) => genres.setGenre)
     const getListOfMovies = () => {
-        if (ganreStatus.length === 0) {
+        if (id == null) {
             return getPopular()
         } else {
             return getDiscover(ganreStatus)

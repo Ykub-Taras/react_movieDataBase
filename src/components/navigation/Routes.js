@@ -4,6 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {setGenre, setMovieId} from "../../redux/actionCreators";
 import React from "react";
 import MovieInfo from "../movieInfo/MovieInfo";
+import GetPopular from "../moviesList/GetPopular";
+import GetDiscover from "../moviesList/GetDiscover";
 
 const Routes = () => {
     // const dispatch = useDispatch();
@@ -16,8 +18,9 @@ const Routes = () => {
     // }
     return (
         <Switch>
-            <Route exact path={'/popular'} component={GetMovies}/>
-            <Route exact path={'/discover'} component={GetMovies}/>
+            <Route exact path={'/'} component={GetMovies}/>
+            <Route exact path={'/popular'} component={GetPopular}/>
+            <Route exact path={'/discover'} component={GetDiscover}/>
             <Route exact path={'/movie/:id'} component={MovieInfo}/>
 
         </Switch>
