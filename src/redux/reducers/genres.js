@@ -1,13 +1,10 @@
 import {
     GENRES, SET_GANRE,
-
 } from '../actionTypes'
 
 const initialState = {
     listGenresEN: [],
     setGenre: [],
-
-
 }
 
 export const genres = (state = initialState, action) => {

@@ -8,19 +8,19 @@ const GetGenres = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         getGenres().then(value => dispatch(setListGenres([...value.data.genres])))
-            .catch(e => console.log('*ERROR* : ', e))
-            .finally(() => console.log('-------Get GetGenres component----'))
+            .catch(e => console.log('ERROR : ', e))
+            .finally(() => console.log('Get genres block passed'))
     }, [dispatch])
     const genres = useSelector(({genres}) => genres.listGenresEN)
-    console.log('--result--', genres)
+
     function onSubmit(e) {
         e.preventDefault()
-            }
+    }
 
     const genreList = genres.map((item, index) => {
         return (
             <div className="list-inline-item" key={index}>
-                <Link to={`/discover`} >
+                <Link to={`/discover`}>
                     <button type="button" className="btn btn-outline-info"
                             onSubmit={onSubmit}
                             onClick={() => {
@@ -36,5 +36,6 @@ const GetGenres = () => {
         <Fragment>
             {genreList}
         </Fragment>
-    )}
+    )
+}
 export default GetGenres

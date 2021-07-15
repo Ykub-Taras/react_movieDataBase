@@ -1,5 +1,3 @@
-import {getPopular} from "../../services/api";
-
 import GetMovies from "./GetMovies";
 
 export default function GetPopular() {
