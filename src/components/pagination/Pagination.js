@@ -12,7 +12,7 @@ function Pagination () {
         function handlePageChange(newPage) {
             let value = newPage.selected+1;
             dispatch(setCurrentPage(value));
-            return (<div><GetMovies/></div>)     }
+            return (<div><GetMovies/></div>)}
 
    return (
         <div className='container' style={{display:"flex", justifyContent:"center"}}>
