@@ -12,7 +12,6 @@ const getPopular = () => axiosInstance.get('/movie/top_rated' + apiKey + languag
 const getMovieInfo = (id) =>
     axiosInstance.get('/movie/' + id + apiKey + language);
 
-
 export {
     getDiscover, getGenres, getPopular, getMovieInfo
 
