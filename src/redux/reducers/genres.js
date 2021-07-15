@@ -8,7 +8,6 @@ const initialState = {
 }
 
 export const genres = (state = initialState, action) => {
-    console.log(action)
         switch (action.type) {
         case GENRES: {
             return {...state, listGenresEN: action.payload}

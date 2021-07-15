@@ -17,7 +17,7 @@ function App() {
                 <DarkModeToggle className="navbar"/>
                 <Links/><UserAccount/></h2>
             <section className="appMargin"><GetGenres/></section>
-            <Routes/>}
+            <Routes/>
         </Router>
     </div>);
 }

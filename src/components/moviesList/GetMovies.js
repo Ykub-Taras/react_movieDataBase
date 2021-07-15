@@ -1,10 +1,12 @@
 import React, {Fragment, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {setListMovies} from "../../redux/actionCreators";
+import {setAllPages, setCurrentPage, setListMovies} from "../../redux/actionCreators";
 import {Link} from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import {Badge} from 'reactstrap';
 import {getDiscover, getPopular} from "../../services/api";
+import {pagination} from "../../redux/reducers/pagination";
+import Pagination from "../pagination/Pagination";
 
 
 const GetMovies = ({id}) => {
@@ -18,8 +20,10 @@ const GetMovies = ({id}) => {
         }
     };
     useEffect(() => {
-        getListOfMovies().then(value =>
+        getListOfMovies().then(value => {
             dispatch(setListMovies([...value.data.results]))
+            dispatch(setCurrentPage(value.data.page))
+            dispatch(setAllPages(value.data.total_pages))}
         )
             .catch(e => console.log('ERROR : ', e))
             .finally(() => console.log('Get movies block performed'))
@@ -49,11 +53,18 @@ const GetMovies = ({id}) => {
             </div>
         );
     });
+
+    let currentPage = useSelector(({pagination}) => pagination.currentPage)
+    let allPages = useSelector(({pagination}) => pagination.allPages)
+    console.log(typeof currentPage)
+    console.log(typeof allPages)
+
     return (
         <Fragment>
             <dir className="row m-auto" style={{padding: 0}}>
                 {moviesList}
             </dir>
+            <Pagination/>
         </Fragment>
     )
 }

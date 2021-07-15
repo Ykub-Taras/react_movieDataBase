@@ -30,7 +30,7 @@ function MovieInfo({match}) {
                         <hr/>
                         <h4 className="card-text">{movieInfo.overview}<br/><br/>Genres:</h4>
                         <div className="reactStar">
-                            {genresInfo.map(value => <div className="alert alert-info">{value.name}</div>)}
+                            {genresInfo.map(value => <div key={value.id} className="alert alert-info">{value.name}</div>)}
                         </div>
                         <h4 className="card-text">Released at: <i>{movieInfo.release_date}</i><br/>Spectators
                             rating: {movieInfo.vote_average}</h4>
