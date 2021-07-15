@@ -1,39 +1,30 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import ReactPaginate from 'react-paginate';
-
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import GetMovies from "../moviesList/GetMovies";
+import {setCurrentPage} from "../../redux/actionCreators";
 
-export default function Pagination() {
-   //  const dispatch = useDispatch
+function Pagination () {
     const pageCount = useSelector(({pagination}) => pagination.allPages);
     const currentPage = useSelector(({pagination}) => pagination.currentPage);
-    const newPage = currentPage+1;
-   //
-   //
-   //
-   //  const [movies, setMovies] = useState([]);
-   //  const [loading, setLoading] = useState(true);
-   //  const [currentPage, setCurrentPage] = useState(0);
-   //  const [pageCount, setPageCount] = useState(0);
-   //  let pageNumber = 1;
-   // // ( current_Page >= 1 ? pageNumber = current_Page : pageNumber);
-   //
-   //
-   //
-   //  function handlePageChange(data) {
-   //      setCurrentPage(data.selected);
-   //  }
+    const dispatch = useDispatch();
 
+        function handlePageChange(newPage) {
+            let value = newPage.selected+1;
+            dispatch(setCurrentPage(value));
+            return (<div><GetMovies/></div>)     }
 
-    return (
-        <div className='container'>
+    console.log(currentPage)
+
+   return (
+        <div className='container' style={{display:"flex", justifyContent:"center"}}>
+            {handlePageChange}
             <ReactPaginate
                 pageCount={pageCount}
                 pageRangeDisplayed={5}
                 marginPagesDisplayed={2}
-                onPageChange={<GetMovies newPage={newPage}/>}
+                onPageChange={handlePageChange}
                 containerClassName={'pagination'}
                 previousLinkClassName={'page-link'}
                 activeClassName={'page-item active'}
@@ -45,3 +36,4 @@ export default function Pagination() {
             />
         </div>
     )}
+export default Pagination

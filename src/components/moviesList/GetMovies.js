@@ -12,6 +12,8 @@ import Pagination from "../pagination/Pagination";
 const GetMovies = ({id}) => {
     const dispatch = useDispatch();
     let ganreStatus = useSelector(({genres}) => genres.setGenre)
+    const currentPage = useSelector(({pagination}) => pagination.currentPage);
+    console.log(id)
     const getListOfMovies = () => {
         if (id == null) {
             return getPopular()
@@ -20,7 +22,7 @@ const GetMovies = ({id}) => {
         }
     };
     useEffect(() => {
-        getListOfMovies().then(value => {
+                getListOfMovies().then(value => {
             dispatch(setListMovies([...value.data.results]))
             dispatch(setCurrentPage(value.data.page))
             dispatch(setAllPages(value.data.total_pages))}
@@ -53,11 +55,6 @@ const GetMovies = ({id}) => {
             </div>
         );
     });
-
-    let currentPage = useSelector(({pagination}) => pagination.currentPage)
-    let allPages = useSelector(({pagination}) => pagination.allPages)
-    console.log(typeof currentPage)
-    console.log(typeof allPages)
 
     return (
         <Fragment>

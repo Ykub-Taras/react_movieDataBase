@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getGenres} from "../../services/api";
 import {setGenre, setListGenres} from "../../redux/actionCreators";
 import {Link} from "react-router-dom";
+import Pagination from "../pagination/Pagination";
 
 const GetGenres = () => {
     const dispatch = useDispatch();

@@ -18,6 +18,7 @@ function App() {
                 <Links/><UserAccount/></h2>
             <section className="appMargin"><GetGenres/></section>
             <Routes/>
+
         </Router>
     </div>);
 }
