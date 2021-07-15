@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
 import {useDispatch, useSelector} from "react-redux";
-
 import GetMovies from "../moviesList/GetMovies";
 import {setCurrentPage} from "../../redux/actionCreators";
 
@@ -14,8 +13,6 @@ function Pagination () {
             let value = newPage.selected+1;
             dispatch(setCurrentPage(value));
             return (<div><GetMovies/></div>)     }
-
-    console.log(currentPage)
 
    return (
         <div className='container' style={{display:"flex", justifyContent:"center"}}>

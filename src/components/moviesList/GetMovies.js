@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import {Badge} from 'reactstrap';
 import {getDiscover, getPopular} from "../../services/api";
-import {pagination} from "../../redux/reducers/pagination";
 import Pagination from "../pagination/Pagination";
 
 
@@ -13,12 +12,11 @@ const GetMovies = ({id}) => {
     const dispatch = useDispatch();
     let ganreStatus = useSelector(({genres}) => genres.setGenre)
     const currentPage = useSelector(({pagination}) => pagination.currentPage);
-    console.log(id)
     const getListOfMovies = () => {
         if (id == null) {
-            return getPopular()
+            return getPopular(currentPage)
         } else {
-            return getDiscover(ganreStatus)
+            return getDiscover(ganreStatus, currentPage)
         }
     };
     useEffect(() => {
@@ -29,7 +27,7 @@ const GetMovies = ({id}) => {
         )
             .catch(e => console.log('ERROR : ', e))
             .finally(() => console.log('Get movies block performed'))
-    }, [ganreStatus])
+    }, [ganreStatus, currentPage, id])
 
     const movies = useSelector(({movies}) => movies.listMovies)
     const moviesList = movies.map((value, index) => {

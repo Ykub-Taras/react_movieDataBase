@@ -4,8 +4,8 @@ import {
 } from '../actionTypes'
 
 const initialState = {
-    currentPage: null,
-    allPages: null,
+    currentPage: 1,
+    allPages: 1,
 
 }
 
