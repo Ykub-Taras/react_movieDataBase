@@ -50,15 +50,23 @@
 
 .dFlexJustStart {
     display: flex;
-    justify-content: start
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
 }
 
 .appMargin {
     margin: 20px 5px;
 }
 
-.pMargin {margin: 0 30px}
+.pMargin {
+    margin: 0 30px
+}
 
-.textNone {text-decoration:none}
+.textNone {
+    text-decoration: none
+}
 
-.fontBold {font-weight: bolder}
+.fontBold {
+    font-weight: bolder
+}

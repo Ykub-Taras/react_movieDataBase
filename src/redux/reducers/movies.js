@@ -1,8 +1,4 @@
-import {
-    MOVIES,
-    SET_MOVIE_ID,
-
-} from '../actionTypes'
+import {MOVIES, SET_MOVIE_ID,} from '../actionTypes'
 
 const initialState = {
     listMovies: [],

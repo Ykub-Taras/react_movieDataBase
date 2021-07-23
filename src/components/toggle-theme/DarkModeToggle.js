@@ -10,8 +10,8 @@ const DarkModeToggle = () => {
 
     return (
         <div className="dark-mode-toggle">
-            <Toggle checked={darkMode.value} onChange={darkMode.toggle} />
-         </div>
+            <Toggle checked={darkMode.value} onChange={darkMode.toggle}/>
+        </div>
     );
 };
 

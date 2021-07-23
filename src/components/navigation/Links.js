@@ -1,4 +1,6 @@
 import {Link} from "react-router-dom"
+import React from "react";
+
 const Links = () => {
     return (
         <div className="pMargin reactStar">
@@ -7,5 +9,4 @@ const Links = () => {
         </div>
     )
 }
-
 export default Links;

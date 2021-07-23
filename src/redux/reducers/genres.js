@@ -1,16 +1,14 @@
-import {
-    GENRES, SET_GANRE,
-} from '../actionTypes'
+import {GENRES, SET_GANRE,} from '../actionTypes'
 
 const initialState = {
-    listGenresEN: [],
+    listGenres: [],
     setGenre: [],
 }
 
 export const genres = (state = initialState, action) => {
-        switch (action.type) {
+    switch (action.type) {
         case GENRES: {
-            return {...state, listGenresEN: action.payload}
+            return {...state, listGenres: action.payload}
         }
         case SET_GANRE: {
             return {...state, setGenre: action.payload}

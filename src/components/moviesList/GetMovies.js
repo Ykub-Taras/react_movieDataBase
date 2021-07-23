@@ -4,30 +4,31 @@ import {setAllPages, setCurrentPage, setListMovies} from "../../redux/actionCrea
 import {Link} from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import {Badge} from 'reactstrap';
-import {getDiscover, getPopular} from "../../services/api";
+import {getDiscover, getPopular, getSearch} from "../../services/api";
 import Pagination from "../pagination/Pagination";
-
 
 const GetMovies = ({id}) => {
     const dispatch = useDispatch();
-    let ganreStatus = useSelector(({genres}) => genres.setGenre)
+    let ganreStatus = useSelector(({genres}) => genres.setGenre);
+    const language = useSelector(({language}) => language.listLanguages)
+    const searchItem = useSelector(({search}) => search.searchItem)
     const currentPage = useSelector(({pagination}) => pagination.currentPage);
-    const getListOfMovies = () => {
-        if (id == null) {
-            return getPopular(currentPage)
-        } else {
-            return getDiscover(ganreStatus, currentPage)
-        }
-    };
+
+    const getListOfMovies = () => (
+        (id == null && searchItem === '') ? getPopular(currentPage, language) :
+            (id !== null && searchItem === '') ? getDiscover(ganreStatus, currentPage, language) :
+                getSearch(searchItem, language, currentPage));
+
     useEffect(() => {
-                getListOfMovies().then(value => {
-            dispatch(setListMovies([...value.data.results]))
-            dispatch(setCurrentPage(value.data.page))
-            dispatch(setAllPages(value.data.total_pages))}
+        getListOfMovies().then(value => {
+                dispatch(setListMovies([...value.data.results]))
+                dispatch(setCurrentPage(value.data.page))
+                dispatch(setAllPages(value.data.total_pages))
+            }
         )
             .catch(e => console.log('ERROR : ', e))
             .finally(() => console.log('Get movies block performed'))
-    }, [ganreStatus, currentPage, id])
+    }, [ganreStatus, currentPage, id, language, searchItem])
 
     const movies = useSelector(({movies}) => movies.listMovies)
     const moviesList = movies.map((value, index) => {

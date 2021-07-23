@@ -3,16 +3,16 @@ import {useDispatch, useSelector} from "react-redux";
 import {getGenres} from "../../services/api";
 import {setGenre, setListGenres} from "../../redux/actionCreators";
 import {Link} from "react-router-dom";
-import Pagination from "../pagination/Pagination";
 
 const GetGenres = () => {
     const dispatch = useDispatch();
+    const language = useSelector(({language}) => language.listLanguages)
     useEffect(() => {
-        getGenres().then(value => dispatch(setListGenres([...value.data.genres])))
+        getGenres(language).then(value => dispatch(setListGenres([...value.data.genres])))
             .catch(e => console.log('ERROR : ', e))
             .finally(() => console.log('Get genres block passed'))
-    }, [dispatch])
-    const genres = useSelector(({genres}) => genres.listGenresEN)
+    }, [dispatch, language])
+    const genres = useSelector(({genres}) => genres.listGenres)
 
     function onSubmit(e) {
         e.preventDefault()

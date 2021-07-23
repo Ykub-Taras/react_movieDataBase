@@ -1,7 +1,4 @@
-import {
-    CURRENT_PAGE,
-    ALL_PAGES,
-} from '../actionTypes'
+import {ALL_PAGES, CURRENT_PAGE,} from '../actionTypes'
 
 const initialState = {
     currentPage: 1,

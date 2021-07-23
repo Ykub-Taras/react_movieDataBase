@@ -1,20 +1,21 @@
 import {getMovieInfo} from "../../services/api";
 import React, {useEffect, useState} from "react";
 import ReactStars from "react-rating-stars-component";
+import {useSelector} from "react-redux";
 
 function MovieInfo({match}) {
     const id = match.params.id;
-
+    const language = useSelector(({language}) => language.listLanguages)
     let [movieInfo, setMovieInfo] = useState({})
     let [genresInfo, setGanresInfo] = useState([])
 
     useEffect(() => {
-        getMovieInfo(id).then(value => {
+        getMovieInfo(id, language).then(value => {
                 setGanresInfo(value.data.genres);
                 setMovieInfo(value.data)
             }
         );
-    }, [id]);
+    }, [id, language]);
     const source = `https://image.tmdb.org/t/p/original/${(movieInfo.poster_path)}`
     const source1 = `https://image.tmdb.org/t/p/original/${(movieInfo.backdrop_path)}`
     return (
@@ -30,7 +31,8 @@ function MovieInfo({match}) {
                         <hr/>
                         <h4 className="card-text">{movieInfo.overview}<br/><br/>Genres:</h4>
                         <div className="reactStar">
-                            {genresInfo.map(value => <div key={value.id} className="alert alert-info">{value.name}</div>)}
+                            {genresInfo.map(value => <div key={value.id}
+                                                          className="alert alert-info">{value.name}</div>)}
                         </div>
                         <h4 className="card-text">Released at: <i>{movieInfo.release_date}</i><br/>Spectators
                             rating: {movieInfo.vote_average}</h4>
@@ -43,4 +45,5 @@ function MovieInfo({match}) {
         </div>
     )
 }
+
 export default MovieInfo

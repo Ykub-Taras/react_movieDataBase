@@ -4,18 +4,18 @@ import {useDispatch, useSelector} from "react-redux";
 import GetMovies from "../moviesList/GetMovies";
 import {setCurrentPage} from "../../redux/actionCreators";
 
-function Pagination () {
+function Pagination() {
     const pageCount = useSelector(({pagination}) => pagination.allPages);
-    const currentPage = useSelector(({pagination}) => pagination.currentPage);
     const dispatch = useDispatch();
 
-        function handlePageChange(newPage) {
-            let value = newPage.selected+1;
-            dispatch(setCurrentPage(value));
-            return (<div><GetMovies/></div>)}
+    function handlePageChange(newPage) {
+        let value = newPage.selected + 1;
+        dispatch(setCurrentPage(value));
+        return (<div><GetMovies/></div>)
+    }
 
-   return (
-        <div className='container' style={{display:"flex", justifyContent:"center"}}>
+    return (
+        <div className='container' style={{display: "flex", justifyContent: "center"}}>
             {handlePageChange}
             <ReactPaginate
                 pageCount={pageCount}
@@ -32,5 +32,7 @@ function Pagination () {
                 breakLinkClassName={'page-link'}
             />
         </div>
-    )}
+    )
+}
+
 export default Pagination
